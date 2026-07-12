@@ -9,26 +9,27 @@ public class Table {
         int columns = input.nextInt();
         int rows = input.nextInt();
         int[][] arr = new int[rows][columns];
-        for(int i = 0; i < rows; i++){
-            for(int j = 0; j < columns; j++){
-                if (i == 0) {
-                    arr[0][j] = j + 2;
-                }
-                if (j == 0) {
-                    arr[i][0] = i + 1;
-                }
+        
+        for(int j = 1; j < columns; j++) {
+            arr[0][j] = j + 1; 
+        }
+        for(int i = 1; i < rows; i++) {
+            arr[i][0] = i + 1; 
+        }
+        
+        for(int i = 1; i < rows; i++){
+            for(int j = 1; j < columns; j++){
+                arr[i][j] = arr[i][0] * arr[0][j];
             }
         }
+        
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < columns; j++){
-                if (i > 0 && j > 0) {
-                    arr[i][j] = arr[i][0] * arr[0][j];
+                if (i == 0 && j == 0) {
+                    System.out.print("    "); 
+                } else {
+                    System.out.printf("%-4d", arr[i][j]);
                 }
-            }
-        }
-        for(int i = 0; i < rows; i++){
-            for(int j = 0; j < columns; j++){
-                System.out.printf("%-4d", arr[i][j]);
             }
             System.out.println();
         }
